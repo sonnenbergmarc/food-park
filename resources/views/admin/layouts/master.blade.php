@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/fontawesome/css/all.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}">
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -67,6 +68,7 @@
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+    <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 
     <!-- Show dynamic validation message-->
     <script>
