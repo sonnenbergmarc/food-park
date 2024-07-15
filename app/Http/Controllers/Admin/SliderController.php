@@ -103,8 +103,8 @@ class SliderController extends Controller
             $this->removeImage($slider->image);
             $slider->delete();
             return response(['status' => 'success', 'message' => 'Deleted Slide Successfully!']);
-        }catch( \Exception $e){
-            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }catch(\Exception $e){
+            return response(['status' => 'error', 'message' => 'Something went wrong!']);
         }
     }
 }
