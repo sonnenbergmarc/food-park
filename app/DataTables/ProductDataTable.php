@@ -24,8 +24,18 @@ class ProductDataTable extends DataTable
         return (new EloquentDataTable($query))
         ->addColumn('action', function($query){
             $edit = "<a href='".route('admin.product.edit', $query->id)."' class='btn btn-primary'><i class='fas fa-edit'></i></a>";
-            $delete = "<a href='".route('admin.product.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash'></i></a>";
-            return $edit.$delete;
+            $delete = "<a href='".route('admin.product.destroy', $query->id)."' class='btn btn-danger mx-2 delete-item'><i class='fas fa-trash'></i></a>";
+            $more = '<div class="btn-group dropleft">
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></button>
+                        <div class="dropdown-menu dropleft" x-placement="left-start" style="position: absolute; transform: translate3d(-2px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>';
+            return $edit.$delete.$more;
         })->addColumn('price', function($query){
                 return '$ ' .$query->price;
             })
@@ -96,7 +106,7 @@ class ProductDataTable extends DataTable
             Column::computed('action')
             ->exportable(false)
             ->printable(false)
-            ->width(150)
+            ->width(175)
             ->addClass('text-center'),
         ];
     }
