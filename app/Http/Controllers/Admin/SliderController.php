@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\SliderUpdateRequest;
 use App\Models\Slider;
 use App\Traits\FileUploadTrait;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(SliderDataTable $dataTable)
+    public function index(SliderDataTable $dataTable) : View|JsonResponse
     {
         return $dataTable->render('admin.slider.index');
     }

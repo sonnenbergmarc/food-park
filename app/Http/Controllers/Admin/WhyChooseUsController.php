@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\WhyChooseUsCreateRequest;
 use App\Models\SectionTitle;
 use App\Models\WhyChooseUs;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class WhyChooseUsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(WhyChooseUsDataTable $dataTable)
+    public function index(WhyChooseUsDataTable $dataTable) : View|JsonResponse
     {
         $keys = ['why_choose_top_title', 'why_choose_main_title', 'why_choose_sub_title'];
         $titles = SectionTitle::whereIn('key', $keys)->pluck('value', 'key');
