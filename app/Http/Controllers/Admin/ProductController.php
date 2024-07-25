@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\ProductDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductCreateRequest;
+use App\Http\Requests\Admin\ProductUpdateRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Traits\FileUploadTrait;
@@ -26,7 +27,7 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         $categories = Category::all();
         return view('admin.product.create', compact('categories'));
@@ -71,7 +72,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id) : View
+    public function edit(string $id): View
     {
         $categories = Category::all();
         $product = Product::findOrFail($id);
@@ -81,9 +82,30 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductUpdateRequest $request, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        /** Handle Image File */
+        $imagePath = $this->uploadImage($request, 'image', $product->thumb_image);
+
+        $product->thumb_image = !empty($imagePath) ? $imagePath : $product->thumb_image;
+        $product->name = $request->name;
+        $product->slug = generateUniqueSlug('Product', $request->name);
+        $product->category_id = $request->category;
+        $product->price = $request->price;
+        $product->offer_price = $request->offer_price;
+        $product->short_description = $request->short_description;
+        $product->long_description = $request->long_description;
+        $product->sku = $request->sku;
+        $product->seo_title = $request->seo_title;
+        $product->seo_description = $request->seo_description;
+        $product->show_at_home = $request->show_at_home;
+        $product->status = $request->status;
+        $product->save();
+
+        toastr()->success('Successfully Updated Product!');
+        return to_route('admin.product.index');
     }
 
     /**
