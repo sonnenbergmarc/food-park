@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Product Size for {{ $product->name }}</h1>
+            <h1>Product Size and Options for {{ $product->name }}</h1>
         </div>
 
         <div>
@@ -47,6 +47,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Action</th>
@@ -55,6 +56,7 @@
                             <tbody>
                                 @foreach ($sizes as $size)
                                     <tr>
+                                        <td>{{ ++$loop->index }}</td>
                                         <td>{{ $size->name }}</td>
                                         <td>{{ $size->price }}</td>
                                         <td>
@@ -65,7 +67,7 @@
                                 @endforeach
                                 @if (count($sizes) === 0)
                                     <tr>
-                                        <td colspan="3" class="text-center">No data found.</td>
+                                        <td colspan="4" class="text-center">No data found.</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -109,6 +111,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Action</th>
@@ -117,6 +120,7 @@
                             <tbody>
                                 @foreach ($options as $option)
                                     <tr>
+                                        <td>{{ ++$loop->index }}</td>
                                         <td>{{ $option->name }}</td>
                                         <td>{{ $option->price }}</td>
                                         <td>
@@ -127,7 +131,7 @@
                                 @endforeach
                                 @if (count($options) === 0)
                                     <tr>
-                                        <td colspan="3" class="text-center">No data found.</td>
+                                        <td colspan="4" class="text-center">No data found.</td>
                                     </tr>
                                 @endif
                             </tbody>
