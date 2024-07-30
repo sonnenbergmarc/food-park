@@ -1,6 +1,4 @@
 <?php
-
-
 /** Create unique slug */
 if(!function_exists('generateUniqueSlug')) {
     function generateUniqueSlug($model, $name) : string
