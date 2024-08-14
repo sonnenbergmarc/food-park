@@ -38,27 +38,30 @@
                                             @method('PUT')
                                             <div class="form-group">
                                                 <label for="site_name">Site Name</label>
-                                                <input name="site_name" type="text" id="site_name" class="form-control">
+                                                <input name="site_name" type="text" id="site_name" class="form-control" value="{{ config('settings.site_name') }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="site_default_currency">Default Currency</label>
                                                 <select name="site_default_currency" id="site_default_currency" class="select2 form-control">
-                                                    <option value="usd">USD</option>
+                                                    <option value="">Select</option>
+                                                    @foreach (config('currencys.currency_list') as $currency)
+                                                        <option @selected(config('settings.site_default_currency') === $currency) value="{{ $currency }}">{{ $currency }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="site_currency_icon">Currency Icon</label>
-                                                        <input name="site_currency_icon" type="text" id="site_currency_icon" class="form-control">
+                                                        <input name="site_currency_icon" type="text" id="site_currency_icon" class="form-control" value="{{ config('settings.site_currency_icon') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="site_currency_icon_position">Currency Icon Position</label>
                                                         <select name="site_currency_icon_position" id="site_currency_icon_position" class="select2 form-control">
-                                                            <option value="right">Right</option>
-                                                            <option value="left">Left</option>
+                                                            <option @selected(config('settings.site_currency_icon_position') === 'right') value="right">Right</option>
+                                                            <option @selected(config('settings.site_currency_icon_position') === 'left') value="left">Left</option>
                                                         </select>
                                                     </div>
                                                 </div>
