@@ -132,6 +132,9 @@
             }
         });
     </script>
+
+    <!-- Load global js -->
+    @include('frontend.layouts.global-scripts')
     @stack('scripts')
 </body>
 
